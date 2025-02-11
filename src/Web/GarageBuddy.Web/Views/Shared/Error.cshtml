@@ -1,0 +1,45 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = Model.StatusCode.ToString() ?? Errors.GeneralError;
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@this.ViewData["Title"] - @GlobalConstants.SystemName</title>
+
+    <partial name="_FavIconPartial" />
+    <link rel="stylesheet" href="~/themes/mazer/dist/assets/compiled/css/app.css" />
+    <link rel="stylesheet" href="~/themes/mazer/dist/assets/compiled/css/error-403.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/themes/mazer/dist/assets/compiled/js/app.js"></script> @*Bootstrap*@
+</head>
+
+<body>
+    <script src="~/themes/mazer/dist/assets/static/js/initTheme.js"></script>
+    <div id="error">
+        <div class="error-page container">
+            <div class="col-md-8 col-12 offset-md-2">
+                <div class="text-center">
+                    @if (Model.ImageUrl != null)
+                    {
+                        <img class="img-error" src="@Model.ImageUrl" alt="@Model.Title" />
+                    }
+
+                    <h1 class="error-title">@Model.Title</h1>
+                    <p class="fs-5 text-gray-600">@Model.Message</p>
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-lg btn-outline-primary mt-3">Go Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/themes/mazer/dist/assets/static/js/components/dark.js"></script>
+    <script src="~/themes/mazer/dist/assets/extensions/sweetalert2/sweetalert2.all.min.js"></script>
+
+    <script src="~/js/site.min.js" asp-append-version="true"></script>
+    <partial name="_NotificationsPartial" />
+</body>
+</html>

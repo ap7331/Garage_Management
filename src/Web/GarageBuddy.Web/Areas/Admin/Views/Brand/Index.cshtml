@@ -1,0 +1,101 @@
+﻿@using GarageBuddy.Common.Constants
+@{
+    ViewData["Title"] = "Brands";
+}
+
+<section class="section">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between">
+            <h5 class="card-title">@ViewData["Title"]</h5>
+            <a class="btn btn-success" asp-area="Admin", asp-controller="Brand" asp-action="Create">Create New Vehicle Brand</a>
+        </div>
+        <div class="card-body">
+            <table id="brandTable" class="table table-striped table-hover" style="width:100%"></table>
+        </div>
+    </div>
+</section>
+
+<script>
+    $(document).ready(function () {
+        $('#brandTable').dataTable({
+            serverSide: true,
+            responsive: true,
+            searching: false,
+            ordering: true,
+            ajax: {
+                url: "@Url.Action("BrandList", "Brand", new { Area = @GlobalConstants.AdminArea })",
+                "data": function (data) {
+                    data.includeDeleted = true;
+                }
+            },
+            columns: [
+                {
+                    name: "Id",
+                    data: "id",
+                    title: "Id"
+                },
+                {
+                    name: 'BrandName',
+                    data: "brandName",
+                    title: "Brand Name"
+                },
+                {
+                    name: "CreatedOn",
+                    data: "createdOn",
+                    title: "Created On"
+                },
+                {
+                    name: "IsDeleted",
+                    data: "isDeleted",
+                    title: "Active",
+                    render: function (data) {
+                        if (data) {
+                            return `<span class="badge bg-danger">Inactive</span>`;
+                        } else {
+                            return `<span class="badge bg-success">Active</span>`;
+                        }
+                    }
+                },
+                {
+                    data: "id",
+                    title: "Action",
+                    render: function (data, type, row) {
+                        return `<a href = '@Url.Action("Edit", "Brand", new { Area = @GlobalConstants.AdminArea })/${data}' class= 'btn btn-primary'> Edit </a>`;
+                    },
+                    sortable: false,
+                    width: "10%"
+                },
+                {
+                    data: "id",
+                    title: "Models",
+                    render: function (data, type, row) {
+                        return `<a href='@Url.Action("Index", "BrandModel", new { Area = @GlobalConstants.AdminArea })?brandId=${data}' class='btn btn-info'>List Models</a>`;
+                    },
+                    sortable: false,
+                    width: "8%"
+                },
+
+
+            ],
+            //Auto refresh
+            //initComplete: function () {
+            //    const api = this.api();
+            //    setInterval(function () {
+            //        api.ajax.reload();
+            //    }, 5000);
+            //},
+            lengthMenu: [
+                [10, 25, -1],
+                [10, 25, 'All']
+            ],
+            columnDefs: [
+                { visible: false, targets: [0] },
+                { className: "text-center", targets: [1] }
+            ]
+        });
+    });
+</script>
+
+@section Scripts {
+    <partial name="_DataTablesScriptsPartial" />
+}

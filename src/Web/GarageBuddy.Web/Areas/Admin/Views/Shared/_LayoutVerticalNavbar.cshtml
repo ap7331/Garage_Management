@@ -1,0 +1,73 @@
+﻿@using GarageBuddy.Common.Constants
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@this.ViewData["Title"] - @GlobalConstants.SystemName</title>
+    <partial name="_FavIconPartial" />
+    <link rel="stylesheet" href="~/themes/mazer/dist/assets/compiled/css/app.css" />
+    <link rel="stylesheet" href="~/themes/mazer/dist/assets/compiled/css/app-dark.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/site.min.css"/>
+    <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script> 
+    
+    @await this.RenderSectionAsync("HeadScripts", required: false)
+</head>
+
+<body>
+    <script src="~/themes/mazer/dist/assets/static/js/initTheme.js"></script>
+    <div id="app">
+        <partial name="_SidebarVerticalPartial" />
+        <div id="main" class="layout-navbar navbar-fixed">
+            <header>
+                <partial name="_NavbarVerticalPartial" />
+            </header>
+            <div id="main-content">
+                <div class="page-heading">
+                    <div class="page-title">
+                        <div class="row">
+                            <div class="col-12 col-md-6 order-md-1 order-last">
+                                @* <h3>@ViewData["Title"]</h3> *@
+                            </div>
+                            <div class="col-12 col-md-6 order-md-2 order-first">
+                                <nav aria-label="breadcrumb"
+                                     class="breadcrumb-header float-start float-lg-end">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <a asp-area="Admin", asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+                                        </li>
+                                        @* <li class="breadcrumb-item active" aria-current="page">Layout Vertical Navbar</li> *@
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    @RenderBody()
+                </div>
+            </div>
+            <partial name="_ModalFormPartial" />
+            <footer>
+                <div class="footer clearfix mb-0 text-muted">
+                    <div class="float-start">
+                        <p>
+                            &copy; @DateTime.Now.Year - @GlobalConstants.SystemName -
+                            <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <partial name="_ModalFormPartial" />
+
+    <script src="~/themes/mazer/dist/assets/static/js/components/dark.js"></script>
+    <script src="~/themes/mazer/dist/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="~/themes/mazer/dist/assets/compiled/js/app.js"></script>  @*Bootstrap*@
+
+    <script src="~/themes/mazer/dist/assets/extensions/sweetalert2/sweetalert2.all.min.js"></script>
+    <script src="~/js/site.min.js" asp-append-version="true"></script>
+    <partial name="_NotificationsPartial" />
+    @await this.RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

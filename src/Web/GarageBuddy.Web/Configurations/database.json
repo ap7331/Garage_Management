@@ -1,0 +1,6 @@
+{
+  "DatabaseSettings": {
+    "DbProvider": "mssql",
+    "DefaultConnection": "Server=.;Database=GarageBuddy;Trusted_Connection=True;MultipleActiveResultSets=true"
+  }
+}

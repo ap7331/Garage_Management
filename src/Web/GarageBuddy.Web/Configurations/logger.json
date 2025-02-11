@@ -1,0 +1,8 @@
+{
+  "LoggerSettings": {
+    "AppName": "GarageBuddy",
+    "WriteToFile": true,
+    "StructuredConsoleLogging": false,
+    "MinimumLogLevel": "Debug"
+  }
+}

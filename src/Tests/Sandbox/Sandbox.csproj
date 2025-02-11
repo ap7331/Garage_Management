@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+	<PropertyGroup>
+		<CodeAnalysisRuleSet>..\..\Rules.ruleset</CodeAnalysisRuleSet>
+	</PropertyGroup>
+	<ItemGroup>
+		<AdditionalFiles Include="..\..\stylecop.json" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.9.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.10" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.10" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\GarageBuddy.Common\GarageBuddy.Common.csproj" />
+    <ProjectReference Include="..\..\Data\GarageBuddy.Data.Common\GarageBuddy.Data.Common.csproj" />
+    <ProjectReference Include="..\..\Data\GarageBuddy.Data.Models\GarageBuddy.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Data\GarageBuddy.Data\GarageBuddy.Data.csproj" />
+    <ProjectReference Include="..\..\Services\GarageBuddy.Services.Data\GarageBuddy.Services.Data.csproj" />
+    <ProjectReference Include="..\..\Services\GarageBuddy.Services.Mapping\GarageBuddy.Services.Mapping.csproj" />
+    <ProjectReference Include="..\..\Services\GarageBuddy.Services.Messaging\GarageBuddy.Services.Messaging.csproj" />
+  </ItemGroup>
+
+</Project>

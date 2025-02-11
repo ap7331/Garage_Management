@@ -1,0 +1,127 @@
+﻿@model CustomerCreateOrEditViewModel
+
+@{
+    ViewData["Title"] = "Create Customer";
+}
+
+<section id="basic-vertical-layouts">
+    <div class="row match-height">
+        <div class="col-md-6 col-12 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title mb-0">@ViewData["Title"]</h4>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <form asp-area="Admin" asp-controller="Customer" asp-action="Create" class="form form-vertical" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label asp-for="@Model.Name"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" asp-for="@Model.Name" placeholder="Customer Name">
+                                            <span class="form-text text-danger" asp-validation-for="@Model.Name"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label asp-for="@Model.Address"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" asp-for="@Model.Address" placeholder="Address">
+                                            <span class="form-text text-danger" asp-validation-for="@Model.Address"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label asp-for="@Model.Email"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" asp-for="@Model.Email" placeholder="Email">
+                                            <span class="form-text text-danger" asp-validation-for="@Model.Email"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label asp-for="@Model.Phone"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" asp-for="@Model.Phone" placeholder="Phone">
+                                            <span class="form-text text-danger" asp-validation-for="@Model.Phone"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label asp-for="@Model.CompanyName"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" asp-for="@Model.CompanyName" placeholder="Company name">
+                                            <span class="form-text text-danger" asp-validation-for="@Model.CompanyName"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label asp-for="@Model.ImageUrl"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" asp-for="@Model.ImageUrl" placeholder="Image URL">
+                                            <span class="form-text text-danger" asp-validation-for="@Model.ImageUrl"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label asp-for="@Model.Description"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <textarea class="form-control" asp-for="@Model.Description" placeholder="Description"></textarea>
+                                            <span class="form-text text-danger" asp-validation-for="@Model.Description"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label asp-for="@Model.Users">Select User</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <select asp-for="@Model.ApplicationUserId" class="form-control" asp-items="@(new SelectList(Model.Users, "Id", "FullName"))">
+                                                <option value="">Select a User</option>
+                                            </select>
+                                            <span class="form-text text-danger" asp-validation-for="@Model.ApplicationUserId"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mb-1">
+                                        <div class="col-sm-12 d-flex justify-content-end">
+                                            <button type="submit" class="btn btn-primary me-1 mb-1">Create</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

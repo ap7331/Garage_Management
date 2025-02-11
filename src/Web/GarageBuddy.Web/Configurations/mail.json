@@ -1,0 +1,12 @@
+{
+  "EmailSettings": {
+    "SenderEmail": "example@mail.com",
+    "SenderName": "Example Sender",
+    "SmtpSettings": {
+      "Host": "smtp.example.com",
+      "Port": 587,
+      "UserName": "username@example.com",
+      "Password": "DemoPassword123"
+    }
+  }
+}

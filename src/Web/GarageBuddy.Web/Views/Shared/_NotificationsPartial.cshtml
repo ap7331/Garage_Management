@@ -1,0 +1,21 @@
+﻿@using static GarageBuddy.Common.Constants.NotificationConstants
+
+@if (TempData.ContainsKey(NotifyWarning))
+{
+    <script>Toast.fire({ icon: 'warning', title: '@TempData[NotifyWarning]' });</script>
+}
+
+@if (TempData.ContainsKey(NotifyInfo))
+{
+    <script>Toast.fire('info', '@TempData[NotifyInfo]');</script>
+}
+
+@if (TempData.ContainsKey(NotifySuccess))
+{
+    <script>Toast.fire({ icon: 'success', title: '@TempData[NotifySuccess]' });</script>
+}
+
+@if (TempData.ContainsKey(NotifyError))
+{
+    <script>Toast.fire({ icon: 'error', title: '@TempData[NotifyError]' });</script>
+}

@@ -1,0 +1,47 @@
+﻿@using GarageBuddy.Web.Infrastructure.Extensions
+@using Microsoft.AspNetCore.Identity
+@using GarageBuddy.Data.Models
+@using Microsoft.AspNetCore.Authorization
+@inject SignInManager<ApplicationUser> SignInManager
+@inject IAuthorizationService AuthorizationService
+
+@{
+    var allowAdminArea = (await AuthorizationService.AuthorizeAsync(User, Policies.MechanicPolicy)).Succeeded;
+}
+
+<div class="header-top">
+    <div class="container">
+        <div class="logo">
+            <a asp-controller="Home" asp-action="Index">
+                <img src="~/themes/mazer/dist/assets/compiled/svg/logo.svg" alt="Logo" />
+            </a>
+        </div>
+        <div class="header-top-right">
+            <partial name="_LoginPartial" />
+            <!-- Burger button responsive -->
+            <a href="#" class="burger-btn d-block d-xl-none">
+                <i class="bi bi-justify fs-3"></i>
+            </a>
+        </div>
+    </div>
+</div>
+<nav class="main-navbar">
+    <div class="container">
+        <ul>
+            <li class="menu-item">
+                <a class="menu-link" asp-controller="Home" asp-action="Index">
+                    <span><i class="bi bi-grid-fill"></i> Dashboard</span>
+                </a>
+            </li>
+
+            @if (this.SignInManager.IsSignedIn(this.User) && allowAdminArea)
+            {
+                <li class="menu-item">
+                    <a class="menu-link" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
+                        <span><i class="bi bi-diagram-3-fill"></i> Admin panel</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</nav>

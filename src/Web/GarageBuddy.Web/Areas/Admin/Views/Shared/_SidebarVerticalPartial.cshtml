@@ -1,0 +1,108 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+
+@{
+    var isAdmin = (await AuthorizationService.AuthorizeAsync(User, Policies.AdminPolicy)).Succeeded;
+    var isManager = (await AuthorizationService.AuthorizeAsync(User, Policies.ManagerPolicy)).Succeeded;
+}
+
+<div id="sidebar">
+    <div class="sidebar-wrapper active">
+        <div class="sidebar-header position-relative">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="logo">
+                    <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
+                        <img src="~/themes/mazer/dist/assets/compiled/svg/logo.svg" alt="Logo" srcset="" />
+                    </a>
+                </div>
+                <partial name="_ThemeTogglePartial" />
+                <div class="sidebar-toggler x">
+                    <a href="#" class="sidebar-hide d-xl-none d-block">
+                        <i class="bi bi-x bi-middle"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-menu">
+            <ul class="menu">
+                <li class="sidebar-title">Menu</li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" asp-area="" asp-controller="Home" asp-action="Index">
+                        <i class="bi bi-house"></i>
+                        <span>Frontend</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item has-sub active">
+                    <a href="#" class="sidebar-link">
+                        <i class="bi bi-box"></i>
+                        <span>Vehicles</span>
+                    </a>
+
+                    <ul class="submenu">
+                        <li class="submenu-item">
+                            <a class="submenu-link" asp-area="Admin" asp-controller="Brand" asp-action="Index"><i class="bi bi-car-front"></i> Brands</a>
+                        </li>
+                        <li class="submenu-item">
+                            <a class="submenu-link" asp-area="Admin" asp-controller="BrandModel" asp-action="Index"><i class="bi bi-car-front"></i> Models</a>
+                        </li>
+                        @if (isManager)
+                        {
+                            <li class="submenu-item">
+                                <a class="submenu-link" asp-area="Admin" asp-controller="DriveType" asp-action="Index"><i class="bi bi-car-front"></i> Drive types</a>
+                            </li>
+                            <li class="submenu-item">
+                                <a class="submenu-link" asp-area="Admin" asp-controller="FuelType" asp-action="Index"><i class="bi bi-car-front"></i> Fuel types</a>
+                            </li>
+                            <li class="submenu-item">
+                                <a class="submenu-link" asp-area="Admin" asp-controller="GearboxType" asp-action="Index"><i class="bi bi-car-front"></i> Gearbox types</a>
+                            </li>
+                        }
+                        <li class="submenu-item">
+                            <a class="submenu-link" asp-area="Admin" asp-controller="Vehicle" asp-action="Index"><i class="bi bi-car-front"></i> All Vehicles</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-item has-sub active">
+                    <a href="#" class="sidebar-link">
+                        <i class="bi bi-people-fill"></i>
+                        <span>People</span>
+                    </a>
+                    <ul class="submenu">
+                        <li class="submenu-item">
+                            <a class="submenu-link" asp-area="Admin" asp-controller="Customer" asp-action="Index"><i class="bi"></i> Customers</a>
+                        </li>
+                        @if (isAdmin)
+                        {
+                            <li class="submenu-item">
+                                <a class="submenu-link" asp-area="Admin" asp-controller="UserManager" asp-action="Index"><i class="bi"></i> Users</a>
+                            </li>
+                        }
+                    </ul>
+                </li>
+                @if (isManager)
+                {
+                    <li class="sidebar-item has-sub active">
+                        <a href="#" class="sidebar-link">
+                            <i class="bi bi-grid-1x2-fill"></i>
+                            <span>General items</span>
+                        </a>
+                        <ul class="submenu">
+                            <li class="submenu-item">
+                                <a class="submenu-link" asp-area="Admin" asp-controller="Garage" asp-action="Index"><i class="bi"></i> Garages</a>
+                            </li>
+                        </ul>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

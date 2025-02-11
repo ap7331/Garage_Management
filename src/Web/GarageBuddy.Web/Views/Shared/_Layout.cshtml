@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@this.ViewData["Title"] - @GlobalConstants.SystemName</title>
+    <partial name="_FavIconPartial" />
+
+    <link rel="stylesheet" href="~/themes/mazer/dist/assets/compiled/css/layout-rtl-backup.css" />
+    <link rel="stylesheet" href="~/themes/mazer/dist/assets/compiled/css/app-dark.css" />
+    <link rel="stylesheet" href="~/themes/mazer/dist/assets/compiled/css/app.css" />
+    <link rel="stylesheet" href="css/site.min.css" />
+    
+    @await this.RenderSectionAsync("HeadScripts", required: false)
+</head>
+
+<body>
+    <script src="~/themes/mazer/dist/assets/static/js/initTheme.js"></script>
+    <div id="app">
+        <div id="main" class="layout-horizontal">
+            <header class="mb-5">
+                <partial name="_NavbarHorizontalPartial" />
+            </header>
+
+            <div class="content-wrapper container">
+                <partial name="_CookieConsentPartial" />
+                <div class="page-heading">
+                    @*<h3>Horizontal Layout</h3>*@
+                </div>
+                <div class="page-content">
+                    @RenderBody()
+                </div>
+            </div>
+            <footer>
+                <div class="container">
+                    <div class="footer clearfix mb-0 text-muted">
+                        <div class="float-start">
+                            <p>
+                                &copy; @DateTime.Now.Year - @GlobalConstants.SystemName -
+                                <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </p>
+                        </div>
+                        <div class="float-end">
+                            <partial name="_ThemeTogglePartial" />
+                            </div>
+                        </div>
+                    </div>
+            </footer>
+        </div>
+    </div>
+    <partial name="_ModalFormPartial" />
+
+    <script src="~/themes/mazer/dist/assets/compiled/js/app.js"></script> @*Bootstrap*@
+    <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+
+    <script src="~/themes/mazer/dist/assets/static/js/components/dark.js"></script>
+
+    <script src="~/themes/mazer/dist/assets/static/js/pages/horizontal-layout.js"></script>
+    <script src="~/themes/mazer/dist/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    @* <script src="~/themes/mazer/dist/assets/static/js/pages/dashboard.js"></script> *@
+
+    <script src="~/themes/mazer/dist/assets/extensions/sweetalert2/sweetalert2.all.min.js"></script>
+    <script src="~/js/site.min.js" asp-append-version="true"></script>
+    <partial name="_NotificationsPartial" />
+    @await this.RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
